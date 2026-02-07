@@ -23,7 +23,7 @@
             padding: 20px;
         }
 
-        /* 1. Typing Animation Style */
+        /* 1. Header & Typing Area */
         #typing-text {
             font-family: 'Dancing Script', cursive;
             font-size: 3.5em;
@@ -32,7 +32,7 @@
             margin-top: 50px;
         }
 
-        /* 2. Floating Hearts Style */
+        /* 2. Floating Hearts */
         .heart {
             position: fixed;
             color: var(--pink);
@@ -54,11 +54,10 @@
             padding: 30px;
             border-radius: 20px;
             backdrop-filter: blur(5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
 
-        .section { margin-top: 40px; }
-
-        /* 3. Button Style */
+        /* 3. Surprise Section */
         .surprise-btn {
             background-color: var(--pink);
             color: white;
@@ -69,25 +68,27 @@
             cursor: pointer;
             transition: 0.3s;
             margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(255, 77, 109, 0.3);
+            font-weight: bold;
         }
-
-        .surprise-btn:hover { transform: scale(1.1); background-color: #ff3355; }
 
         #surprise-content {
             display: none;
             margin-top: 30px;
-            animation: fadeIn 2s;
+            animation: fadeIn 2.5s;
         }
 
-        .pixel {
-            font-family: monospace;
-            white-space: pre;
-            font-size: 12px;
-            color: var(--pink);
-            line-height: 1.2;
-            margin: 20px 0;
+        .photo-frame {
+            width: 80%;
+            margin: 20px auto;
+            padding: 15px 15px 40px 15px;
+            background: white;
+            border-radius: 5px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+            transform: rotate(-3deg);
+            display: inline-block;
         }
+
+        .photo-frame img { width: 100%; border: 1px solid #eee; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
     </style>
@@ -107,33 +108,23 @@
             <p>💘 <b>One thing I love:</b> The way you always understand me....</p>
         </div>
 
-        <div class="section">
-            <h2 style="color: var(--pink);">Pixel Love</h2>
-            <div class="pixel">
-      ███   ███
-     █████ █████
-     ███████████
-      █████████
-        █████
-          ███
-           █
-            </div>
-        </div>
-
         <button class="surprise-btn" onclick="revealSurprise()">Click for a surprise! 🎁</button>
 
         <div id="surprise-content">
-            <h2>Surprise! 🎶</h2>
-            <p>I hope this made you smile today.</p>
+            <h2 style="font-family: 'Dancing Script';">I think they call this love... 🎶</h2>
             
+            <div class="photo-frame">
+                <img src="photo1.jpg" alt="Our Photo">
+            </div>
+
             <audio id="myAudio" loop>
-                <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+                <source src="music.mp3" type="audio/mpeg">
             </audio>
         </div>
     </div>
 
     <script>
-        // --- 1. Typing Animation Logic ---
+        // Typing Animation Logic
         const text = "Happy Valentine’s Day! 💖";
         let i = 0;
         function typeWriter() {
@@ -145,7 +136,7 @@
         }
         window.onload = typeWriter;
 
-        // --- 2. Floating Hearts Logic ---
+        // Heart Spawner
         function createHeart() {
             const container = document.getElementById('hearts-container');
             const heart = document.createElement('div');
@@ -153,13 +144,12 @@
             heart.innerHTML = '❤️';
             heart.style.left = Math.random() * 100 + 'vw';
             heart.style.animationDuration = (Math.random() * 3 + 2) + 's';
-            heart.style.opacity = Math.random();
             container.appendChild(heart);
             setTimeout(() => { heart.remove(); }, 5000);
         }
         setInterval(createHeart, 300);
 
-        // --- 3. Surprise Button Logic ---
+        // Surprise Button Logic
         function revealSurprise() {
             document.getElementById('surprise-content').style.display = 'block';
             const audio = document.getElementById('myAudio');
@@ -169,4 +159,3 @@
     </script>
 </body>
 </html>
-    
